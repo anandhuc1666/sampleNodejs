@@ -16,4 +16,6 @@
 //     }
 //     console.log(patten)
 // }
-
+console.log("hello")
+const number = ['a','b']
+const newNumber = [...number,'aa','bb']
