@@ -16,6 +16,14 @@
 //     }
 //     console.log(patten)
 // }
-console.log("hello")
-const number = ['a','b']
-const newNumber = [...number,'aa','bb']
+// console.log("hello")
+// const number = ['a', 'b']
+// const newNumber = [...number, 'aa', 'bb']
+// const finel = setInterval(() => {
+//     console.log(newNumber)
+// }, 1000)
+// setTimeout(() => {
+//     clearInterval(finel)
+// }, 5000)
+console.log(__filename)
+console.log(__dirname)
