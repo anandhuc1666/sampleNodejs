@@ -27,6 +27,19 @@
 //     }
 // })
 
- 
+console.log('anandhu')
 
+function name(){
+    console.log('anandhu one')
+}
+name()
+const names = function(){
+    console.log('anandhu two')
+}
+names()
+const tname = ()=>{ console.log('anandhu three')}
+tname();
 
+(function(){
+    console.log('anandhu four')
+})();
