@@ -27,19 +27,39 @@
 //     }
 // })
 
-console.log('anandhu')
+// console.log('anandhu')
 
-function name(){
-    console.log('anandhu one')
-}
-name()
-const names = function(){
-    console.log('anandhu two')
-}
-names()
-const tname = ()=>{ console.log('anandhu three')}
-tname();
+// function name(){
+//     console.log('anandhu one')
+// }
+// name()
+// const names = function(){
+//     console.log('anandhu two')
+// }
+// names()
+// const tname = ()=>{ console.log('anandhu three')}
+// tname();
 
-(function(){
-    console.log('anandhu four')
-})();
+// (function(){
+//     console.log('anandhu four')
+// })();
+// let person = {name:'anandhu',age:20,place:'vazhikkadavu',
+//     qalification :function(){
+//         console.log('bca') 
+//     }
+// }
+// console.log(person.qalification())
+// person.age=21;
+
+// person.work = 'developer'
+// console.log(person)
+
+function person(name,age){
+    this.name=name,
+    this.age=age,
+    this.display=function(){
+      console.log('name: '+this.name,'age: '+this.age)
+    }
+}
+var ad = new person("anandu",21)
+ad.display()
