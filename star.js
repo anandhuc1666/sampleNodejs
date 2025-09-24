@@ -54,12 +54,15 @@
 // person.work = 'developer'
 // console.log(person)
 
-function person(name,age){
-    this.name=name,
-    this.age=age,
-    this.display=function(){
-      console.log('name: '+this.name,'age: '+this.age)
-    }
+// function person(name,age){
+//     this.name=name,
+//     this.age=age,
+//     this.display=function(){
+//       console.log('name: '+this.name,'age: '+this.age)
+//     }
+// }
+// var ad = new person("anandu",21)
+// ad.display()
+module.exports.hello=function(num1,num2){
+    console.log(num1+num2)
 }
-var ad = new person("anandu",21)
-ad.display()
