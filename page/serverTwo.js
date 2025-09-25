@@ -1,6 +1,6 @@
-const path = require('path')
-const fs = require('fs')
-const http = require('http')
+// const path = require('path')
+// const fs = require('fs')
+// const http = require('http')
 
 // fs.writeFile(path.join(__dirname,'txttwo.txt'),'hellow sample',(err)=>{
 //    if(err){
