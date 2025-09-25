@@ -53,13 +53,15 @@
 const fs = require('fs');
 const http = require('http');
 
-http.createServer((req,res)=>{
-  fs.writeFile('txtone.txt','new content on the file',(err)=>{
+fs.appendFile('txtone.txt','\n third content is add on the texts',(err)=>{
     if(err){
-        res.writeHead(500,{'content-type':'text/plain'})
-        res.end('connot write the file...')
-        return
+        console.log(err)
+    }else{
+        console.log('new content is add')
     }
+})
+
+http.createServer((req,res)=>{
     fs.readFile('txtone.txt','utf8',(err,data)=>{
         if(err){
             res.writeHead(500,{'content-type':'text/plian'})
@@ -72,5 +74,5 @@ http.createServer((req,res)=>{
         console.log("content is :"+data)
         res.end()
     })
-  })
+
 }).listen(5000,()=>console.log('Server running on http://localhost:5000'))
