@@ -48,3 +48,29 @@
 //     });
 //   });
 // }).listen(7007, () => console.log('Server running on http://localhost:7007'));
+
+
+const fs = require('fs');
+const http = require('http');
+
+http.createServer((req,res)=>{
+  fs.writeFile('txtone.txt','new content on the file',(err)=>{
+    if(err){
+        res.writeHead(500,{'content-type':'text/plain'})
+        res.end('connot write the file...')
+        return
+    }
+    fs.readFile('txtone.txt','utf8',(err,data)=>{
+        if(err){
+            res.writeHead(500,{'content-type':'text/plian'})
+            res.end('connote be read the file')
+            return
+        }
+        res.writeHead(200,{"content-type":"text/plain"})
+        res.write(data)
+        
+        console.log("content is :"+data)
+        res.end()
+    })
+  })
+}).listen(5000,()=>console.log('Server running on http://localhost:5000'))
