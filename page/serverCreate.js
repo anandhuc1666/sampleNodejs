@@ -1,29 +1,29 @@
 // const path = require('path')
-const fs = require('fs')
-const http = require('http')
+// const fs = require('fs')
+// const http = require('http')
 
-http.createServer((req, res) => {
- fs.appendFile('txtone.txt','hello checking the code issus',(err)=>{
-    if(err){
-        console.log(err)
-        res.end('writing error is find')
-        return
-    }else{
-        console.log('add the content on the _.txt')
-    }
- })
- fs.readFile('txtone.txt','utf8',(err,data)=>{
-    if(err){
-        res.writeHead(500,{'content-type':'text/plain'})
-        res.end('connot be read file')
-    }
-    res.writeHead(200,{'content-type':'text/plian'})
-    res.write(data)
-    console.log('content add on the _.txt'+data)
-    res.end()
- })
+// http.createServer((req, res) => {
+//  fs.appendFile('txtone.txt','hello checking the code issus',(err)=>{
+//     if(err){
+//         console.log(err)
+//         res.end('writing error is find')
+//         return
+//     }else{
+//         console.log('add the content on the _.txt')
+//     }
+//  })
+//  fs.readFile('txtone.txt','utf8',(err,data)=>{
+//     if(err){
+//         res.writeHead(500,{'content-type':'text/plain'})
+//         res.end('connot be read file')
+//     }
+//     res.writeHead(200,{'content-type':'text/plian'})
+//     res.write(data)
+//     console.log('content add on the _.txt'+data)
+//     res.end()
+//  })
 
-}).listen(7007, () => console.log('server on..'))
+// }).listen(7007, () => console.log('server on..'))
 
 
 
