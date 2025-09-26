@@ -1,8 +1,6 @@
 const fs = require('fs')
+const http = require('http')
 
-let numb = 5;
-for(let i = 0; i<=numb; i++){
-fs.unlink(`sample${i}.txt`,(err)=>{
-    if(err) throw err
+http.createServer((req,res)=>{
+    fs.writeFile()
 })
-}
