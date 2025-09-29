@@ -7,6 +7,7 @@ http.createServer((req,res)=>{
         fs.readFile('sample.txt','utf8',(err,data)=>{
             console.log(`data reading ${data}`)
             res.writeHead(200,{"content-type":"text/plain"})
+            
             res.end(data)
         })
     })
