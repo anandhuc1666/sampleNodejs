@@ -1,1 +1,2 @@
-hello new content is add to the sampl.txt
+hello new content on writting
+add next content on the file
