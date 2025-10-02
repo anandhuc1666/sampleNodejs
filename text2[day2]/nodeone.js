@@ -1,6 +1,5 @@
 // const fs = require('fs').promises
 // const http = require('http')
-
 // http.createServer(async (req, res) => {
 //     try {
 //         await fs.writeFile('text1.txt', 'text is writing')
