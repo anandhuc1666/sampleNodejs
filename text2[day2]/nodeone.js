@@ -16,3 +16,21 @@
 // }).listen(5000, () => console.log('server is on running 5000 port'))
 
 
+const fs = require('fs')
+const http = require('http')
+
+http.createServer((req,res)=>{
+    fs.writeFile('sample.txt','hello sample.txt file',(err)=>{
+        if(err) throw err
+    })
+    fs.readFile('sample.txt','utf8',(err,data)=>{
+        if(err){
+            res.writeHead(500,{'content-type':'text/plain'})
+            console.log('server issus',err)
+            res.end('server end')
+        }
+        res.writeHead(200,{'content-type':'text/plain'})
+        res.write(data)
+        res.end()
+    })
+}).listen(3000,()=>console.log('server is running on prot 3000'))
