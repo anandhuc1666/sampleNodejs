@@ -14,7 +14,6 @@
 //         res.writeHead(500, { 'content-type': 'text/html' })
 //         res.end()
 //     }
-
 // }).listen(5000, () => console.log('server is on running 5000 port'))
 
 
