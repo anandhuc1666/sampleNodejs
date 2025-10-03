@@ -1,2 +1,0 @@
-hello sample.txt file
-new content is add on the sample.txt file
