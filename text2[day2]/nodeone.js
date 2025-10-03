@@ -23,6 +23,9 @@ http.createServer((req,res)=>{
     fs.writeFile('sample.txt','hello sample.txt file',(err)=>{
         if(err) throw err
     })
+    fs.appendFile('sample.txt','\nnew content is add on the sample.txt file',(err)=>{
+        if(err) throw err
+    })
     fs.readFile('sample.txt','utf8',(err,data)=>{
         if(err){
             res.writeHead(500,{'content-type':'text/plain'})
@@ -33,4 +36,5 @@ http.createServer((req,res)=>{
         res.write(data)
         res.end()
     })
+
 }).listen(3000,()=>console.log('server is running on prot 3000'))
