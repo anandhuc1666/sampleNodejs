@@ -38,11 +38,17 @@
 //     })
 
 // }).listen(3000,()=>console.log('server is running on prot 3000'))
- const event = require('events')
- const eventEmiter = new event()
+const http = require('http')
+ const fs = require('fs')
  
- eventEmiter.on('sample',(data)=>{
-    console.log(`hello ${data}`);
-    
- })
- eventEmiter.emit('sample','anandhu')
+  http.createServer((req,res)=>{
+    fs.readFile('sample.html','utf8',(err,data)=>{
+        if(err){
+            res.writeHead(500,{'content-type':'text/html'})
+            res.end('<h1>404 server issus</h1>')
+        }
+        res.writeHead(200,{'content-type':'text/html'})
+        res.write(data)
+        res.end()
+    })
+  }).listen(6060,()=>console.log('server is running port 3001'));
