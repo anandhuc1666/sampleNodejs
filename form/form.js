@@ -22,7 +22,4 @@ http.createServer((req, res) => {
        res.end() 
     }
 
-
-
-
 }).listen(3000, () => console.log('server is running 3000'))
