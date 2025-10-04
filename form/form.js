@@ -1,7 +1,9 @@
 const fs = require('fs')
 const http = require('http')
+const url =require('url')
 
 http.createServer((req, res) => {
+    let q = url.parse(req.url)
     if (req.url === '/') {
         fs.readFile('form.html', 'utf8', (err, data) => {
             if (err) {
