@@ -3,11 +3,15 @@ const app =express()
 const path =require('path')
 const PORT = 3000
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 app.get('/',(req,res)=>{
-   res.sendFile(path.join,(__dirname,'sample.html'))
+   res.sendFile(path.join(__dirname,'sample.html'))
 })
-app.get('/person/:id',(req,res)=>{
-    res.send(`new person = ${req.url.slice(8)}`)
+app.post('/',(req,res)=>{
+   let Nuser = req.body
+    res.send(`new user name : ${Nuser.name} <br> new user password : ${Nuser.password}` )
 })
 
 app.listen(PORT,()=>{
