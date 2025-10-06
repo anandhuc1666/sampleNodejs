@@ -12,6 +12,7 @@ app.get('/',(req,res)=>{
 app.post('/',(req,res)=>{
    let Nuser = req.body
     res.send(`new user name : ${Nuser.name} <br> new user password : ${Nuser.password}` )
+    console.log(Nuser.name ,Nuser.password)
 })
 
 app.listen(PORT,()=>{
