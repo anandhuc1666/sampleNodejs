@@ -41,4 +41,27 @@ app.delete('/user/:id', (req, res) => {
     }
 
 })
+
+
+app.patch('/user/:id',(req,res)=>{
+    const {id} = req.params
+    const user = users.find((u)=>u.id == id)
+     const {name,email} = req.body
+     if(!user){
+       res.status(404)
+     }
+     if(name){
+         user.name = name
+     }
+     if(email){
+         user.email = email
+     }
+     const index = users.findIndex((i)=>i.id == id)
+     users[index]=user
+     return res.json(user)
+})
+
+
+
+
 app.listen(PORT, () => console.log('server is on'))
