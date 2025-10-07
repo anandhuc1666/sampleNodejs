@@ -3,9 +3,7 @@ const app = express()
 const PORT = 3001
 
 app.use(express.json())
-const users = [
-    { id: 1, name: "anandhu", email: "anandhu@gmail.com" },
-    { id: 2, name: "varun", email: "varun@gmail.com" }
+let users = [
 ]
 app.get('/', (req, res) => {
     res.send('user page')
@@ -15,7 +13,11 @@ app.get('/user', (req, res) => {
 })
 app.get('/user/:id', (req, res) => {
     let { id } = req.params
-    res.json(users.find((user) => user.id === Number(id)))
+    const newUser = users.find((user) => user.id === Number(id))
+    if (!newUser) {
+        return res.status(404).send('user not fund')
+    }
+    return res.json(newUser)
 })
 app.post('/user', (req, res) => {
     const { name, email } = req.body;
@@ -28,6 +30,15 @@ app.post('/user', (req, res) => {
     }
 
 })
+app.delete('/user/:id', (req, res) => {
+    const { id } = req.params
+    const user = users.find((u) => u.id == id)
+    if (!user) {
+        return res.status(404).send('User not found')
+    } else {
+       users = users.filter((u) => u.id != id)
+        return res.status(204).json({ message: 'User deleted successfully', users })
+    }
 
-
+})
 app.listen(PORT, () => console.log('server is on'))
