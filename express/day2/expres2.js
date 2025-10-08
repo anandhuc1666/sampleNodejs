@@ -108,6 +108,7 @@ app.patch('/users/:id',(req,res)=>{
     
     const userID = Number(id)
     const user = users.find((u)=>u.id === userID)
+    
     const {name,email} = req.body
    if(name){
     user.name = name
