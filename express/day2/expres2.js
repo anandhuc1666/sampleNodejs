@@ -104,7 +104,8 @@ if(!user){
 })
 //update the spesific users in users
 app.patch('/users/:id',(req,res)=>{
-    const {id} = req.params
+    const {id} = req.params 
+    
     const userID = Number(id)
     const user = users.find((u)=>u.id === userID)
     const {name,email} = req.body
