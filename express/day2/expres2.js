@@ -103,8 +103,20 @@ if(!user){
 }
 })
 //update the spesific users in users
-app.patch('users/:id',(req,res)=>{
-    
+app.patch('/users/:id',(req,res)=>{
+    const {id} = req.params
+    const userID = Number(id)
+    const user = users.find((u)=>u.id === userID)
+    const {name,email} = req.body
+   if(name){
+    user.name = name
+   }
+   if(email){
+    user.email =email
+   }
+   const index = users.findIndex((u)=>u.id === userID)
+   users[index] =user
+   res.json(user)
 })
 
 app.listen(PORT, () => console.log('server is running'))
