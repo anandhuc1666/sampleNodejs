@@ -39,10 +39,17 @@ const multiply = (num1, num2) => {
         resolve(num1 * num2)
     })
 }
-newNumber(10, 20)
+const div = (num1,num2) =>{
+  return  new Promise((resolve, reject) => {
+        resolve(num1/num2)
+    })
+}
+newNumber(20, 20)
     .then((p) => {
         console.log(p)
         return multiply(p,p)
     })
-    .then((p) => console.log(p))
+    .then((p) => {console.log(p)
+         return div(p,p)})
+         .then((y)=>console.log(y))
     .catch((e) => console.log('error is found', e))
