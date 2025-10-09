@@ -25,15 +25,24 @@ const Promise = require('promise')
 const newNumber = (num1, num2) => {
     return new Promise((resolve, reject) => {
         let err = false
-        if(num1 === 12){
+        if (num1 === 12) {
             err = true
-             reject(err)
-        }else{
-        resolve(num1 + num2)
+            reject(err)
+        } else {
+            resolve(num1 + num2)
         }
 
     })
 }
-newNumber(12, 20)
-.then((p) => console.log(p))
-.catch((e)=>console.log('error is found',e))
+const multiply = (num1, num2) => {
+    return new Promise((resolve, reject) => {
+        resolve(num1 * num2)
+    })
+}
+newNumber(10, 20)
+    .then((p) => {
+        console.log(p)
+        return multiply(p,p)
+    })
+    .then((p) => console.log(p))
+    .catch((e) => console.log('error is found', e))
