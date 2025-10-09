@@ -70,7 +70,7 @@
 // const PORT = 3002
 
 // let users = [
-   
+
 // ]
 // app.use(express.json())
 // //recive the all users
@@ -105,10 +105,10 @@
 // //update the spesific users in users
 // app.patch('/users/:id',(req,res)=>{
 //     const {id} = req.params 
-    
+
 //     const userID = Number(id)
 //     const user = users.find((u)=>u.id === userID)
-    
+
 //     const {name,email} = req.body
 //    if(name){
 //     user.name = name
@@ -128,7 +128,7 @@
 
 //create the operation to get,post,patch,delete a person in express way//
 
-const express =require('express')
+const express = require('express')
 const app = express()
 const PORT = 3003
 
@@ -137,51 +137,51 @@ let users = []
 app.use(express.json())
 // get the user form the get way
 
-app.get('/users',(req,res)=>{
+app.get('/users', (req, res) => {
     res.json(users)
 })
 
 //add a person inside of the users array
 
-app.post('/users',(req,res)=>{
-    const {name,email} = req.body
-    const user = {id: users.length + 1,name,email}
-     users.push(user)
-     res.json(user)
+app.post('/users', (req, res) => {
+    const { name, email } = req.body
+    const user = { id: users.length + 1, name, email }
+    users.push(user)
+    res.json(user)
 })
 //find a single person in unique ID way
 
-app.get('/users/:id',(req,res)=>{
-    const {id}=req.params
+app.get('/users/:id', (req, res) => {
+    const { id } = req.params
     const userID = Number(id)
-    const user = users.find((u)=>u.id === userID)
+    const user = users.find((u) => u.id === userID)
     res.json(user)
 })
 //delete a person in the particular user id way
 
-app.delete('/users/:id',(req,res)=>{
-    const {id} = req.params
+app.delete('/users/:id', (req, res) => {
+    const { id } = req.params
     const userID = Number(id)
-    const user =users.find((u)=>u.id === userID)
-    users = users.filter((u)=>u.id !== user.id)
+    const user = users.find((u) => u.id === userID)
+    users = users.filter((u) => u.id !== user.id)
     res.json(users)
 })
 //update a perticular user in ID order
 
-app.patch('/users/:id',(req,res)=>{
-    const {id} = req.params
+app.patch('/users/:id', (req, res) => {
+    const { id } = req.params
     const userID = Number(id)
-    const user = users.find((u)=>u.id === userID)
-    const {name,email} =req.body
-    if(name){
+    const user = users.find((u) => u.id === userID)
+    const { name, email } = req.body
+    if (name) {
         user.name = name
     }
-    if(email){
-        user.email= email
+    if (email) {
+        user.email = email
     }
-    const index = users.findIndex((u)=>u.id === userID)
-    users[index]= user
+    const index = users.findIndex((u) => u.id === userID)
+    users[index] = user
     res.json(user)
 })
 
-app.listen(PORT,()=>console.log('server is on running'))
+app.listen(PORT, () => console.log('server is on running'))
