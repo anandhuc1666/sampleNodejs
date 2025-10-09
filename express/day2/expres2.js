@@ -90,7 +90,7 @@ app.get('/users/:id', (req, res) => {
     const user = users.find((user) => user.id == id)
     res.json(user)
 })
-//delete the spesific users from the users array
+//delete the spesific users from the users array 
 app.delete('/users/:id', (req, res) => {
 const {id} = req.params
 const userID = Number(id)
