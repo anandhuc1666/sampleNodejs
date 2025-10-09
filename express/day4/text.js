@@ -56,22 +56,22 @@
 
 const Promise = require('promise')
 
-const num = (num1,num2)=>{
+const num = (num1, num2) => {
     return new Promise((resolve, reject) => {
-        resolve(num1+num2)
+        resolve(num1 + num2)
     })
 }
-const nums =(num1,num2)=>{
+const nums = (num1, num2) => {
     return new Promise((resolve, reject) => {
-        resolve(num1*num2)
+        resolve(num1 * num2)
     })
 }
 // Promise.all([num(10,20),nums(10,20)])
 // .then((p)=>console.log(p))
 
-const result = async()=>{
-    let name= await num(10,20)
+const result = async () => {
+    let name = await num(10, 20)
     console.log(name);
-    
+
 }
-result(10,20)
+result(10, 20)
