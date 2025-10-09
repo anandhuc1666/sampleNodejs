@@ -20,36 +20,58 @@
 //    }
 // })
 
+// const Promise = require('promise')
+
+// const newNumber = (num1, num2) => {
+//     return new Promise((resolve, reject) => {
+//         let err = false
+//         if (num1 === 12) {
+//             err = true
+//             reject(err)
+//         } else {
+//             resolve(num1 + num2)
+//         }
+
+//     })
+// }
+// const multiply = (num1, num2) => {
+//     return new Promise((resolve, reject) => {
+//         resolve(num1 * num2)
+//     })
+// }
+// const div = (num1,num2) =>{
+//   return  new Promise((resolve, reject) => {
+//         resolve(num1/num2)
+//     })
+// }
+// newNumber(20, 20)
+//     .then((p) => {
+//         console.log(p)
+//         return multiply(p,p)
+//     })
+//     .then((p) => {console.log(p)
+//          return div(p,p)})
+//          .then((y)=>console.log(y))
+//     .catch((e) => console.log('error is found', e))
+
 const Promise = require('promise')
 
-const newNumber = (num1, num2) => {
+const num = (num1,num2)=>{
     return new Promise((resolve, reject) => {
-        let err = false
-        if (num1 === 12) {
-            err = true
-            reject(err)
-        } else {
-            resolve(num1 + num2)
-        }
+        resolve(num1+num2)
+    })
+}
+const nums =(num1,num2)=>{
+    return new Promise((resolve, reject) => {
+        resolve(num1*num2)
+    })
+}
+// Promise.all([num(10,20),nums(10,20)])
+// .then((p)=>console.log(p))
 
-    })
+const result = async()=>{
+    let name= await num(10,20)
+    console.log(name);
+    
 }
-const multiply = (num1, num2) => {
-    return new Promise((resolve, reject) => {
-        resolve(num1 * num2)
-    })
-}
-const div = (num1,num2) =>{
-  return  new Promise((resolve, reject) => {
-        resolve(num1/num2)
-    })
-}
-newNumber(20, 20)
-    .then((p) => {
-        console.log(p)
-        return multiply(p,p)
-    })
-    .then((p) => {console.log(p)
-         return div(p,p)})
-         .then((y)=>console.log(y))
-    .catch((e) => console.log('error is found', e))
+result(10,20)
