@@ -6,13 +6,22 @@ let users = []
 app.use(express.json())
 
 app.get('/users',(req,res)=>{
-    res.json(users)
+    if(users.length !== 0){
+        res.status(200)
+        res.json({message:'users is found',users})
+    }else{
+       res.status(404)
+       res.json({message:'no users is login',users})
+    }
 })
 app.post('/users',(req,res)=>{
     const{name,email}=req.body
+    if(users.name !== name, users.email !==email){
     const user = {id:users.length +1,name,email}
     users.push(user)
     res.json(user)
+    }
+
 })
 app.get('/users/:id',(req,res)=>{
     const {id} = req.params
