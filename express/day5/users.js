@@ -1,53 +1,12 @@
+
 const express = require('express')
 const app = express()
-const PORT = 3000
 
-let users = []
+const appRouter = require('./Routes/users.router')
 app.use(express.json())
+app.get('/',(req,res)=>{
+ return   res.send('ready')
+})
+app.use('/users',appRouter)
+app.listen(3000,()=>console.log('server is running'))
 
-app.get('/users',(req,res)=>{
-    if(users.length !== 0){
-        res.status(200)
-        res.json({message:'users is found',users})
-    }else{
-       res.status(404)
-       res.json({message:'no users is login',users})
-    }
-})
-app.post('/users',(req,res)=>{
-    const{name,email}=req.body
-    if(users.name !== name, users.email !==email){
-    const user = {id:users.length +1,name,email}
-    users.push(user)
-    res.json(user)
-    }
-
-})
-app.get('/users/:id',(req,res)=>{
-    const {id} = req.params
-    const userID = Number(id)
-    const user = users.find((u)=>u.id === userID)
-    res.json(user)
-})
-app.delete('/users/:id',(req,res)=>{
-    const {id} = req.params
-    const userID = Number(id)
-    users = users.filter((u)=>u.id !== userID)
-    res.json(users)
-})
-app.patch('/users/:id',(req,res)=>{
-    const {id} = req.params
-    const userID = Number(id)
-    const {name,email}=req.body
-    const user = users.find((u)=>u.id === userID)
-    if(name){
-        user.name = name
-    }
-    if(email){
-        user.email = email
-    }
-    const index = users.indexOf((u)=>u.id === userID)
-    users[index] = user
-    res.json(user)
-})
-app.listen(PORT,()=>console.log('server is on running'))
