@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const PORT = 3000
 
 let users = []
 app.use(express.json())
@@ -10,6 +11,7 @@ app.get('/users',(req,res)=>{
 app.post('/users',(req,res)=>{
     const{name,email}=req.body
     const user = {id:users.length +1,name,email}
+    users.push(user)
     res.json(user)
 })
 app.get('/users/:id',(req,res)=>{
@@ -39,3 +41,4 @@ app.patch('/users/:id',(req,res)=>{
     users[index] = user
     res.json(user)
 })
+app.listen(PORT,()=>console.log('server is on running'))
