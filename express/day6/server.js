@@ -14,5 +14,18 @@ app.post('/users',(req,res)=>{
     res.json(newUser)
 })
 app.get('/users/:id',(req,res)=>{
-    
+    const {id}=req.params
+    const newId = Number(id)
+    const newUser = users.find((u)=>u.id === newId)
+    res.json(newUser)
+})
+app.delete('/users/:id',(req,res)=>{
+    const {id}=req.params
+    const newId = Number(id)
+    const newUser = users.filter((u)=>u.id !==newId)
+    res.json(newUser)
+})
+app.patch('/users/:id',(req,res)=>{
+    const {id}=req.params
+    const newId = Number(id)
 })
