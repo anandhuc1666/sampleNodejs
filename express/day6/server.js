@@ -1,45 +1,48 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+const PORT = 3000;
 
-const PORT = 3000
-let users =[]
-app.use(express.json())
+app.use(express.json());
 
-app.get('/users',(req,res)=>{
-    res.json(users)
-})
-app.post('/users',(req,res)=>{
-    const {name,email}=req.body
-    const newUser = {id:users.length+1,name,email}
-    users.push(newUser)
-    res.json(newUser)
-})
-app.get('/users/:id',(req,res)=>{
-    const {id}=req.params
-    const newId = Number(id)
-    const newUser = users.find((u)=>u.id === newId)
-    res.json(newUser)
-})
-app.delete('/users/:id',(req,res)=>{
-    const {id}=req.params
-    const newId = Number(id)
-    const newUser = users.filter((u)=>u.id !==newId)
-    res.json(newUser)
-})
-app.patch('/users/:id',(req,res)=>{
-    const {id}=req.params
-    const newId = Number(id)
-    const newUser = users.find((u)=>u.id === newId)
-    const {name,email}=req.body
-    if(name){
-       newUser.name = name
-    }
-    if(email){
-        newUser.email = email
-    }
-    const index = users.findIndex((i)=>i === newId)
-    users[index] = newUser
-    res.json(newUser)
-})
+// connect to MongoDB
+mongoose.connect('mongodb://localhost:27017/sample')
+  .then(() => console.log('✅ Connected to sample'))
+  .catch((err) => console.log('❌ MongoDB connection error:', err));
 
-app.listen(PORT,()=>console.log('server is running on'))
+// user schema & model
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String
+});
+const User = mongoose.model('User', userSchema);
+
+// routes
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+});
+
+app.post('/users', async (req, res) => {
+  const { name, email } = req.body;
+  const newUser = new User({ name, email });
+  await newUser.save();
+  res.json(newUser);
+});
+
+app.get('/users/:id', async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.json(user);
+});
+
+app.patch('/users/:id', async (req, res) => {
+  const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  res.json(updatedUser);
+});
+
+app.delete('/users/:id', async (req, res) => {
+  await User.findByIdAndDelete(req.params.id);
+  res.json({ message: 'User deleted' });
+});
+
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
