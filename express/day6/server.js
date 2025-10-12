@@ -14,6 +14,7 @@ mongoose.connect('mongodb://localhost:27017/sample')
 const userSchema = new mongoose.Schema({
   name: String,
   email: String
+
 });
 const User = mongoose.model('User', userSchema);
 
@@ -27,6 +28,7 @@ app.post('/users', async (req, res) => {
   const { name, email } = req.body;
   const newUser = new User({ name, email });
   await newUser.save();
+  
   res.json(newUser);
 });
 
