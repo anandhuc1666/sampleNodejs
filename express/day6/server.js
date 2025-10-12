@@ -28,7 +28,7 @@ app.post('/users', async (req, res) => {
   const { name, email } = req.body;
   const newUser = new User({ name, email });
   await newUser.save();
-  
+
   res.json(newUser);
 });
 
