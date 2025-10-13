@@ -3,7 +3,7 @@ const app = express()
 
 const PORT = 3000
 app.use(express.json())
-const users = []
+let users = []
 
 app.get('/users',(req,res)=>{
 res.json(users)
@@ -30,15 +30,6 @@ app.delete('/users/:id',(req,res)=>{
     users = users.filter((u)=>u.id !== user.id)
     res.json(users)
 })
-
-
-    const { id } = req.params
-    const userID = Number(id)
-    const user = users.find((u) => u.id === userID)
-    users = users.filter((u) => u.id !== user.id)
-    res.json(users)
-
-
 app.patch('/users/:id',(req,res)=>{
     const {id} = req.params
     const userID = Number(id)
