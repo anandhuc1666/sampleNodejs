@@ -1,5 +1,5 @@
 import express, { Router } from "express"
-import { login, register } from "../controller/users.js"
+import { login, register } from "../../crud/controller/users.js"
 
 const route = Router()
 
