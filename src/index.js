@@ -11,7 +11,7 @@ app.get("/",(req,res)=>{
     res.json("hello server is ok 200")
 })
 
-app.use('/',route)
+app.use('/user',route)
 
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>console.log('mongoDB connected'))

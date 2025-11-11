@@ -31,16 +31,17 @@ export const register = async (req, res) => {
 };
 
 export const login = async (req, res) => {
-  const { email, password } = res.body;
+  const { email, password } = req.body;
   try {
     if (!email || !password) {
       return res.status(404).json({ message: "please fill the login page" });
     }
     const users = await User.findOne({ email });
+
     if (!users) {
       return res
         .status(400)
-        .json({ message: `sorry user not exsisited in ${users.email}` });
+        .json({ message: `sorry user not exsisited in email: ${email}` });
     }
     const findPass = await bcrypt.compare(password, users.password);
     if (!findPass) {
