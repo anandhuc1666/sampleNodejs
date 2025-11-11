@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "nodemon files/file.js"
+    "dev": "nodemon src/index.js"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",

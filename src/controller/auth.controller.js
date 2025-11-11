@@ -4,14 +4,14 @@ import bcrypt from "bcrypt";
 export const register = async (req, res) => {
   const { email, password, name, number } = req.body;
   try {
-    if(!email||!password||!name||!number){
-        return res.status(404).json({message:"please fill the registration "})
+    if (!email || !password || !name || !number) {
+      return res.status(404).json({ message: "please fill the registration " });
     }
     const users = await User.findOne({ email });
-    if (!users) {
+    if (users) {
       return res
         .status(400)
-        .json({ message: `sorry no user are exsisited in ${user}` });
+        .json({ message: `sorry user are exsisited in ${users.email}` });
     }
     const passHide = await bcrypt.hash(password, 8);
     const user = await User.insertOne({
@@ -20,10 +20,33 @@ export const register = async (req, res) => {
       number: number,
       name: name,
     });
-    if(user){
-        return res.status(201).json({message:`new user is registered`})
+    if (user) {
+      return res.status(201).json({ message: `new user is registered` });
     }
-    await user.save()
+    await user.save();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "internel server issue" });
+  }
+};
+
+export const login = async (req, res) => {
+  const { email, password } = res.body;
+  try {
+    if (!email || !password) {
+      return res.status(404).json({ message: "please fill the login page" });
+    }
+    const users = await User.findOne({ email });
+    if (!users) {
+      return res
+        .status(400)
+        .json({ message: `sorry user not exsisited in ${users.email}` });
+    }
+    const findPass = await bcrypt.compare(password, users.password);
+    if (!findPass) {
+      return res.status(400).json({ message: "user password is incurrect" });
+    }
+    res.status(200).json({ message: "user is login sucessfully" });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "internel server issue" });
